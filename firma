@@ -1,0 +1,49 @@
+using System.Data;
+
+namespace Firma
+{
+    enum Plcie
+    {
+        M, K
+    }
+     class Osoba
+    {
+        private string imie;
+        public string Nazwisko;
+        private DateTime dataUrodzenia;
+        private string PESEL;
+        private Plcie plec;
+
+        public string Imie 
+        { 
+            get { return imie; } 
+            set { imie = value; } 
+        }
+        public DateTime DataUrodzenia 
+        { 
+            get => dataUrodzenia; 
+            set => dataUrodzenia = value; 
+        }
+
+        Osoba()
+        {
+            imie = string.Empty;
+            Nazwisko = string.Empty;
+            dataUrodzenia = DateTime.MinValue;
+            PESEL = "00000000000";
+        }
+        Osoba(string imie, string nazwisko)
+        {
+            this.imie = imie;
+            this.Nazwisko = nazwisko;
+        }
+        Osoba(string imie, string nazwisko, string data_urodzenia, string Pesel, Plcie plec)
+        {
+            Imie = imie;
+            Nazwisko = nazwisko;
+            dataUrodzenia = DateTime.TryParseExact(dataUrodzenia, new[] { "yyyy-MM-dd", "yyyy/MM/dd", "MM/dd/yy", "dd-MM-yy" }, null, System.Globalization.DateTimeStyles.None, out this.DataUrodzenia);
+            this.PESEL = Pesel;
+            this.plec = plec;
+        }
+    }
+}
